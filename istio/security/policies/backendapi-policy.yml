@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: backendapi-policy
+  namespace: backendapi
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app: backendapi
+  rules:
+    - when:
+        - key: request.auth.claims[scope]
+          values: ["read:weatherforecast"]
