@@ -1,9 +1,12 @@
-name: Build and Push Docker Image to GHCR
+name: Backend API - Build and Push Docker Image to GHCR
 
 on:
   push:
     branches:
       - main
+    paths:
+      - '.github/workflows/backend-api-docker-build-push.yml'
+      - 'BackendAPI/**'
 
 jobs:
   build:
