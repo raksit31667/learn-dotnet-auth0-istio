@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: backendresource-policy
+  namespace: backendresource
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app: backendresource
+  rules:
+    - when:
+        - key: request.auth.claims[scope]
+          values: ["read:resource"]
