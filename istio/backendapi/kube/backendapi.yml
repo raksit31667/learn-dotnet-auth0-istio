@@ -48,8 +48,29 @@ spec:
       serviceAccountName: backendapi
       containers:
         - name: backendapi
-          image: ghcr.io/raksit31667/learn-dotnet-auth0-istio/backend-api:12f072da0d8c17edc2ac80cd453267b44331a38d
+          image: ghcr.io/raksit31667/learn-dotnet-auth0-istio/backend-api:6e573156926322c501e1d83b0081410abeb68556
           imagePullPolicy: IfNotPresent
+          env:
+            - name: Auth0__Domain
+              valueFrom:
+                secretKeyRef:
+                  name: auth0-secret
+                  key: Auth0__Domain
+            - name: Auth0__ClientId
+              valueFrom:
+                secretKeyRef:
+                  name: auth0-secret
+                  key: Auth0__ClientId
+            - name: Auth0__ClientSecret
+              valueFrom:
+                secretKeyRef:
+                  name: auth0-secret
+                  key: Auth0__ClientSecret            
+            - name: Auth0__Audience
+              valueFrom:
+                secretKeyRef:
+                  name: auth0-secret
+                  key: Auth0__Audience
           ports:
             - containerPort: 8080
           volumeMounts:
