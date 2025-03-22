@@ -1,0 +1,61 @@
+##################################################################################################
+# Backend API service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: backendresource
+  labels:
+    app: backendresource
+    service: backendresource
+spec:
+  ports:
+    - port: 8080
+      name: http
+  selector:
+    app: backendresource
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: backendresource
+  labels:
+    account: backendresource
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backendresource
+  labels:
+    app: backendresource
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backendresource
+      version: v1
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+      labels:
+        app: backendresource
+        version: v1
+    spec:
+      serviceAccountName: backendresource
+      containers:
+        - name: backendresource
+          image: ghcr.io/raksit31667/learn-dotnet-auth0-istio/backend-resource:35542627300fcbd3ee5c92effe8c1d70607bb76f
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: tmp
+          emptyDir: {}
+---
