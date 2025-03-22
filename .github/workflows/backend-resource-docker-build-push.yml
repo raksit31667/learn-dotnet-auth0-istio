@@ -1,4 +1,4 @@
-name: Backend API - Build and Push Docker Image to GHCR
+name: Backend Resource - Build and Push Docker Image to GHCR
 
 on:
   push:
