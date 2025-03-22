@@ -48,7 +48,7 @@ spec:
       serviceAccountName: backendapi
       containers:
         - name: backendapi
-          image: ghcr.io/raksit31667/learn-dotnet-auth0-istio/backend-api:eab05a5ac36ab1c510f8728acf989dd699217e12
+          image: ghcr.io/raksit31667/learn-dotnet-auth0-istio/backend-api:2d231548c9013e3a0384a422bec05894f42a47dc
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
