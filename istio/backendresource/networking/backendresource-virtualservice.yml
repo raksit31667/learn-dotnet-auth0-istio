@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: backendresource
+  namespace: backendresource
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - backendresource-gateway
+  http:
+    - match:
+        - uri:
+            exact: /resource
+      route:
+        - destination:
+            host: backendresource
+            port:
+              number: 8080
