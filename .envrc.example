@@ -1,0 +1,4 @@
+export Auth0__Domain="https://your-tenant.auth0.com"
+export Auth0__ClientId="your-client-id"
+export Auth0__ClientSecret="your-client-secret"
+export Auth0__Audience="https://resource.example.com"
