@@ -12,6 +12,8 @@ spec:
     - match:
         - uri:
             exact: /weatherforecast
+        - uri:
+            exact: /external-weatherforecast
       route:
         - destination:
             host: backendapi
